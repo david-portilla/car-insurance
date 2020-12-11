@@ -1,4 +1,4 @@
-# car-insurance
+# Car insurance quotes
 React App for car insurance quotes
 
 ## Available Scripts
