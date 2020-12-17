@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import styled from '@emotion/styled'
+import Form from './components/Form';
 
 const Wrapper = styled.div`
  max-width:600px;
@@ -19,7 +20,7 @@ function App () {
         title='Car insurance quotes'
       />
       <FormWrapper>
-        add form here
+        <Form />
       </FormWrapper>
     </Wrapper>
   );
