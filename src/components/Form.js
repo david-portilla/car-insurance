@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 
 const Field = styled.div`
@@ -44,20 +44,46 @@ const SubmitButton = styled.button`
 `
 
 const Form = () => {
+
+  const [ data, saveData ] = useState({
+    brand: '',
+    year: '',
+    plan: ''
+  })
+
+  const { brand, year, plan } = data
+
+  const getFormValue = (e) => {
+    saveData({
+      ...data,
+      [ e.target.name ]: e.target.value
+    })
+  }
+
   return (
     <form>
+
       <Field>
         <Label>Brand</Label>
-        <Select>
+        <Select
+          name="brand"
+          value={ brand }
+          onChange={ getFormValue }
+        >
           <option value=""> - Select brand -</option>
           <option value="american">American</option>
           <option value="european">European</option>
           <option value="asian">Asian</option>
         </Select>
       </Field>
+
       <Field>
         <Label>Year</Label>
-        <Select>
+        <Select
+          name="year"
+          value={ year }
+          onChange={ getFormValue }
+        >
           <option value="">-- Select year --</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
@@ -71,6 +97,7 @@ const Form = () => {
           <option value="2012">2012</option>
         </Select>
       </Field>
+
       <Field>
         <Label>Plan</Label>
         <InputRadio
@@ -78,6 +105,8 @@ const Form = () => {
           name="plan"
           value="basic"
           id="basic"
+          checked={ plan === 'basic' }
+          onChange={ getFormValue }
         />
         <label for="basic">Basic</label>
 
@@ -86,6 +115,8 @@ const Form = () => {
           name="plan"
           value="full"
           id="full"
+          checked={ plan === 'full' }
+          onChange={ getFormValue }
         />
         <label for="full">Full</label>
       </Field>
