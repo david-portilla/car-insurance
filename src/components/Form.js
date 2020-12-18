@@ -19,8 +19,28 @@ const Select = styled.select`
  -webkit-appearance: none;
 `
 
-const  InputRadio = styled.input`
+const InputRadio = styled.input`
   margin: 0 1rem;
+`
+
+const SubmitButton = styled.button`
+  background-color: #00838F;
+  font-size: 16px;
+  font-weight: 900;
+  width: 100%;
+  padding: 1rem;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all linea 0.25s;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: #26C6DA;
+    transition: all linea 0.25s;
+  }
 `
 
 const Form = () => {
@@ -66,7 +86,7 @@ const Form = () => {
         /> Full
       </Field>
 
-      <button type="button">Quote</button>
+      <SubmitButton type="button">Quote</SubmitButton>
     </form>
   )
 }
