@@ -43,6 +43,15 @@ const SubmitButton = styled.button`
   }
 `
 
+const Error = styled.div`
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  width:100%;
+  text-align: center;
+  margin-bottom: 2rem;
+`
+
 const Form = () => {
 
   const [ data, saveData ] = useState({
@@ -50,6 +59,8 @@ const Form = () => {
     year: '',
     plan: ''
   })
+
+  const [ error, saveError ] = useState(false)
 
   const { brand, year, plan } = data
 
@@ -60,8 +71,22 @@ const Form = () => {
     })
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (brand.trim() === '' || plan.trim() === '' || year.trim() === '') {
+      saveError(true)
+      return
+    }
+    saveError(false)
+  }
+
   return (
-    <form>
+    <form
+      onSubmit={ handleSubmit }
+    >
+
+      {error ? <Error>All fields are required</Error> : null }
 
       <Field>
         <Label>Brand</Label>
@@ -108,7 +133,7 @@ const Form = () => {
           checked={ plan === 'basic' }
           onChange={ getFormValue }
         />
-        <label for="basic">Basic</label>
+        <label htmlFor="basic">Basic</label>
 
         <InputRadio
           type="radio"
@@ -118,10 +143,14 @@ const Form = () => {
           checked={ plan === 'full' }
           onChange={ getFormValue }
         />
-        <label for="full">Full</label>
+        <label htmlFor="full">Full</label>
       </Field>
 
-      <SubmitButton type="button">Quote</SubmitButton>
+      <SubmitButton
+        type="submit"
+      >
+        Quote
+      </SubmitButton>
     </form>
   )
 }
