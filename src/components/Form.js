@@ -77,13 +77,17 @@ const Form = () => {
           type="radio"
           name="plan"
           value="basic"
-        /> Basic
+          id="basic"
+        />
+        <label for="basic">Basic</label>
 
-          <InputRadio
+        <InputRadio
           type="radio"
           name="plan"
           value="full"
-        /> Full
+          id="full"
+        />
+        <label for="full">Full</label>
       </Field>
 
       <SubmitButton type="button">Quote</SubmitButton>
