@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styled from '@emotion/styled'
+import {getDifYear, totalToPay} from '../helpers'
 
 const Field = styled.div`
   align-items: center;
@@ -54,20 +55,20 @@ const Error = styled.div`
 
 const Form = () => {
 
-  const [ data, saveData ] = useState({
+  const [data, saveData] = useState({
     brand: '',
     year: '',
     plan: ''
   })
 
-  const [ error, saveError ] = useState(false)
+  const [error, saveError] = useState(false)
 
-  const { brand, year, plan } = data
+  const {brand, year, plan} = data
 
   const getFormValue = (e) => {
     saveData({
       ...data,
-      [ e.target.name ]: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -79,21 +80,30 @@ const Form = () => {
       return
     }
     saveError(false)
+
+    // base 2000
+    let result = 2000
+    // get difference between years
+    const diffYear = getDifYear(year)
+    // each year rest 3%
+    result -= ((diffYear * 3) * result) / 100
+    // calculate increment based on brand
+    result = totalToPay(brand) * result
   }
 
   return (
     <form
-      onSubmit={ handleSubmit }
+      onSubmit={handleSubmit}
     >
 
-      {error ? <Error>All fields are required</Error> : null }
+      {error ? <Error>All fields are required</Error> : null}
 
       <Field>
         <Label>Brand</Label>
         <Select
           name="brand"
-          value={ brand }
-          onChange={ getFormValue }
+          value={brand}
+          onChange={getFormValue}
         >
           <option value=""> - Select brand -</option>
           <option value="american">American</option>
@@ -106,8 +116,8 @@ const Form = () => {
         <Label>Year</Label>
         <Select
           name="year"
-          value={ year }
-          onChange={ getFormValue }
+          value={year}
+          onChange={getFormValue}
         >
           <option value="">-- Select year --</option>
           <option value="2021">2021</option>
@@ -130,8 +140,8 @@ const Form = () => {
           name="plan"
           value="basic"
           id="basic"
-          checked={ plan === 'basic' }
-          onChange={ getFormValue }
+          checked={plan === 'basic'}
+          onChange={getFormValue}
         />
         <label htmlFor="basic">Basic</label>
 
@@ -140,8 +150,8 @@ const Form = () => {
           name="plan"
           value="full"
           id="full"
-          checked={ plan === 'full' }
-          onChange={ getFormValue }
+          checked={plan === 'full'}
+          onChange={getFormValue}
         />
         <label htmlFor="full">Full</label>
       </Field>
