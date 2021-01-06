@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from '@emotion/styled'
-import {getDifYear, totalToPay} from '../helpers'
+import {getDifYear, getPlan, totalToPay} from '../helpers'
 
 const Field = styled.div`
   align-items: center;
@@ -89,6 +89,11 @@ const Form = () => {
     result -= ((diffYear * 3) * result) / 100
     // calculate increment based on brand
     result = totalToPay(brand) * result
+    // Basic plan increase 20%
+    const increasePlan = getPlan(plan)
+    // Total price
+    result = parseFloat(increasePlan * result).toFixed(2)
+    console.log(result)
   }
 
   return (

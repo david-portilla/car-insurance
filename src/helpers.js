@@ -27,3 +27,8 @@ export function totalToPay (brand) {
   return increment
 
 }
+
+// calculate type of insurance
+export function getPlan (plan) {
+  return (plan === 'basic') ? 1.20 : 1.50
+}
