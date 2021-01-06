@@ -32,3 +32,7 @@ export function totalToPay (brand) {
 export function getPlan (plan) {
   return (plan === 'basic') ? 1.20 : 1.50
 }
+
+export function capitaliceLetter (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}

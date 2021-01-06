@@ -53,7 +53,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `
 
-const Form = () => {
+const Form = ({setResume}) => {
 
   const [data, saveData] = useState({
     brand: '',
@@ -93,7 +93,10 @@ const Form = () => {
     const increasePlan = getPlan(plan)
     // Total price
     result = parseFloat(increasePlan * result).toFixed(2)
-    console.log(result)
+    setResume({
+      quote: result,
+      data
+    })
   }
 
   return (
