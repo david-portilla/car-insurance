@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Form from './components/Form';
 import {useState} from 'react';
 import Resume from './components/Resume';
+import Result from './components/Result';
 
 const Wrapper = styled.div`
  max-width:600px;
@@ -17,7 +18,7 @@ const FormWrapper = styled.div`
 function App () {
 
   const [resume, setResume] = useState({
-    quote: '',
+    quote: 0,
     data: {
       brand: '',
       year: '',
@@ -26,7 +27,7 @@ function App () {
   })
 
   // extract data
-  const {data} = resume
+  const {quote, data} = resume
 
   return (
     <Wrapper>
@@ -40,6 +41,10 @@ function App () {
 
         <Resume
           data={data}
+        />
+
+        <Result
+          quote={quote}
         />
       </FormWrapper>
     </Wrapper>
