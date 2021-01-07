@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import {capitaliceLetter} from '../helpers'
-
+import PropTypes from 'prop-types'
 
 const WrapperResume = styled.div`
   padding: 1rem;
@@ -29,6 +29,10 @@ const Resume = ({data}) => {
       </ul>
     </WrapperResume>
   )
+}
+
+Resume.propTypes = {
+  data: PropTypes.object.isRequired
 }
 
 export default Resume

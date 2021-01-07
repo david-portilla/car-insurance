@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import styled from '@emotion/styled'
 import {getDifYear, getPlan, totalToPay} from '../helpers'
+import PropTypes from 'prop-types'
 
 const Field = styled.div`
   align-items: center;
@@ -96,7 +97,7 @@ const Form = ({setResume, setLoading}) => {
     setTimeout(() => {
       setLoading(false)
       setResume({
-        quote: result,
+        quote: Number(result),
         data
       })
     }, 2000)
@@ -174,6 +175,11 @@ const Form = ({setResume, setLoading}) => {
       </SubmitButton>
     </form>
   )
+}
+
+Form.propTypes = {
+  setResume: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired
 }
 
 export default Form
