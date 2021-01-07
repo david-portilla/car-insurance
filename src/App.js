@@ -4,6 +4,7 @@ import Form from './components/Form';
 import {useState} from 'react';
 import Resume from './components/Resume';
 import Result from './components/Result';
+import Spinner from './components/Spinner';
 
 const Wrapper = styled.div`
  max-width:600px;
@@ -26,6 +27,8 @@ function App () {
     }
   })
 
+  const [loading, setLoading] = useState(false)
+
   // extract data
   const {quote, data} = resume
 
@@ -37,15 +40,17 @@ function App () {
       <FormWrapper>
         <Form
           setResume={setResume}
+          setLoading={setLoading}
         />
+
+        {loading ? <Spinner /> : null}
 
         <Resume
           data={data}
         />
 
-        <Result
-          quote={quote}
-        />
+        {!loading ? <Result quote={quote} /> : null}
+
       </FormWrapper>
     </Wrapper>
   );

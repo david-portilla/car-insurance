@@ -53,7 +53,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `
 
-const Form = ({setResume}) => {
+const Form = ({setResume, setLoading}) => {
 
   const [data, saveData] = useState({
     brand: '',
@@ -80,7 +80,6 @@ const Form = ({setResume}) => {
       return
     }
     saveError(false)
-
     // base 2000
     let result = 2000
     // get difference between years
@@ -93,10 +92,14 @@ const Form = ({setResume}) => {
     const increasePlan = getPlan(plan)
     // Total price
     result = parseFloat(increasePlan * result).toFixed(2)
-    setResume({
-      quote: result,
-      data
-    })
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      setResume({
+        quote: result,
+        data
+      })
+    }, 2000)
   }
 
   return (

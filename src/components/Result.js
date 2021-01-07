@@ -34,7 +34,7 @@ const Result = ({quote}) => {
       (
         <QuoteResult>
           <TransitionGroup
-            component="p"
+            component="div"
             className="resultado"
           >
             <CSSTransition
