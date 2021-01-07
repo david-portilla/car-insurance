@@ -7,8 +7,9 @@ import Result from './components/Result';
 import Spinner from './components/Spinner';
 
 const Wrapper = styled.div`
- max-width:600px;
- margin: 0 auto;
+  max-width:600px;
+  margin: 0 auto;
+  margin-top: 4rem;
 `;
 
 const FormWrapper = styled.div`
